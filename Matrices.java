@@ -3,49 +3,92 @@ import java.util.Scanner;
 import java.util.Random;
 public class Matrices {
     static Scanner sc = new Scanner(System.in);
-    static String username = sc.nextLine();
-    static int size = 7;
-    static String [][] map = new String[size][size];
+    static Random rand = new Random();
+    static int matrixSize = 7;
+    static String[][] battleMap = new String[matrixSize][matrixSize];
+    static String emptyCell = " [] ";
 
-
-
-    public static void main(String[] args) {
-        map[0][0] = "[a1]"; map[0][1] = "[a2]"; map[0][2] = "[a3]"; map[0][3] = "[a4]"; map[0][4] = "[a5]"; map[0][5] = "[a6]"; map[0][6] = "[a7]";
-        map[1][0] = "[b1]"; map[1][1] = "[b2]"; map[1][2] = "[b3]"; map[1][3] = "[b4]"; map[1][4] = "[b5]"; map[1][5] = "[b6]"; map[1][6] = "[b7]";
-        map[2][0] = "[c1]"; map[2][1] = "[c2]"; map[2][2] = "[c3]"; map[2][3] = "[c4]"; map[2][4] = "[c5]"; map[2][5] = "[c6]"; map[2][6] = "[c7]";
-        map[3][0] = "[d1]"; map[3][1] = "[d2]"; map[3][2] = "[d3]"; map[3][3] = "[d4]"; map[3][4] = "[d5]"; map[3][5] = "[d6]"; map[3][6] = "[d7]";
-        map[4][0] = "[e1]"; map[4][1] = "[e2]"; map[4][2] = "[e3]"; map[4][3] = "[e4]"; map[4][4] = "[e5]"; map[4][5] = "[e6]"; map[4][6] = "[e7]";
-        map[5][0] = "[f1]"; map[5][1] = "[f2]"; map[5][2] = "[f3]"; map[5][3] = "[f4]"; map[5][4] = "[f5]"; map[5][5] = "[f6]"; map[5][6] = "[f7]";
-        map[6][0] = "[g1]"; map[6][1] = "[g2]"; map[6][2] = "[g3]"; map[6][3] = "[g4]"; map[6][4] = "[g5]"; map[6][5] = "[g6]"; map[6][6] = "[g7]";
-        placeOneCellShip();
-        placeOneCellShip();
-        placeOneCellShip();
-        printMatrix();
+    static void InitializeBattleMap() {
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize; j++) {
+                battleMap[i][j] = emptyCell;
+            }
+        }
+    }
+    public static boolean canPlaceShip(String[][] battleMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
+    int size = battleMap.length;
+        if (horizontalOrVertical) {
+            if (columnRandom + shipSize > size) return false; // Проверка выхода за границы
+            for (int i = 0; i < shipSize; i++) {
+                if (battleMap[rowRandom][columnRandom + i].equals("1xSHIP")) return false; // Проверка пересечения
+                else if (battleMap[rowRandom][columnRandom + i].equals("2xSHIP")) return false;
+                else if (battleMap[rowRandom][columnRandom + i].equals("3xSHIP")) return false;
+            }
+        } else {
+            if (rowRandom + shipSize > size) return false;
+            for (int i = 0; i < shipSize; i++) {
+                if (battleMap[rowRandom + i][columnRandom].equals("1xSHIP")) return false; 
+                else if (battleMap[rowRandom + i][columnRandom].equals("2xSHIP")) return false;
+                else if (battleMap[rowRandom + i][columnRandom].equals("3xSHIP")) return false;
+            }
+        }
+        return true;
     }
 
-
-    public static void printMatrix() {
-        for (int i = 0; i < 7; i++) {
-            for (int j = 0; j < 7; j++ ) {
-                System.out.print(map[i][j] + "    ");
+    static void printBattleMap() {
+        for (int i = 0; i < matrixSize; i++) {
+            for (int j = 0; j < matrixSize; j++) {
+                System.out.print(battleMap[i][j] + "  ");
+            }
+            System.out.println();
+            System.out.println();
+        }
+    }
+    static void placeShips(int shipSize){
+        boolean placed = false;
+        while(!placed) {
+            int columnRandom = rand.nextInt(matrixSize);
+            int rowRandom = rand.nextInt(matrixSize);
+            boolean horizontalOrVertical = rand.nextBoolean();
+            if (canPlaceShip(battleMap, rowRandom, columnRandom, shipSize, horizontalOrVertical)) {
+                for (int i = 0; i < shipSize; i++) {
+                    if (horizontalOrVertical) {
+                        if (shipSize == 1) {
+                            battleMap[rowRandom][columnRandom + i] = "1xSHIP";
+                        } else if (shipSize == 2) {
+                            battleMap[rowRandom][columnRandom + i] = "2xSHIP";
+                        } else if (shipSize == 3) {
+                            battleMap[rowRandom][columnRandom + i] = "3xSHIP";
+                        }
+                    } else {
+                        if (shipSize == 1) {
+                            battleMap[rowRandom + i][columnRandom] = "1xSHIP";
+                        }
+                        if (shipSize == 2) {
+                            battleMap[rowRandom + i][columnRandom] = "2xSHIP";
+                        }
+                        if (shipSize == 3) {
+                            battleMap[rowRandom + i][columnRandom] = "3xSHIP";
+                        }
+                    }
+                    placed = true;
                 }
-            System.out.println();
-            System.out.println();
             }
         }
-        public static void placeOneCellShip(){
-                 int colRandom = new Random().nextInt(size);
-            int rowRandom = new Random().nextInt(size);
-            for (int i = 0; i < 7; i++) {
-                map[rowRandom][colRandom] = "SHIP";
-            }
-        }
+    }
 
-
-
-
-
-        }
+    public static void main(String[] args) {
+        InitializeBattleMap();
+        placeShips(3);
+        placeShips(2);
+        placeShips(2);
+        placeShips(1);
+        placeShips(1);
+        placeShips(1);
+        placeShips(1);
+        printBattleMap();
+    }
+}
 
 
 
