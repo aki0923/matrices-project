@@ -15,6 +15,7 @@ public class Matrices {
             }
         }
     }
+    
     public static boolean canPlaceShip(String[][] battleMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
     int size = battleMap.length;
         if (horizontalOrVertical) {
@@ -49,7 +50,6 @@ public class Matrices {
     }
     public static boolean isAreaClear(String[][] battleMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
         int size = battleMap.length;
-
         if (horizontalOrVertical) {
             for (int i = -1; i <= shipSize; i++) {
                 for (int j = -1; j <= 1; j++) {
@@ -67,7 +67,8 @@ public class Matrices {
                     }
                 }
             }
-        } else {
+        }
+        else {
             for (int i = -1; i <= shipSize; i++) {
                 for (int j = -1; j <= 1; j++) {
                     int checkRow = rowRandom + i;
@@ -91,7 +92,6 @@ public class Matrices {
     public static boolean isInsideBoard(int rowRandom, int columnRandom, int size) {
         return rowRandom >= 0 && rowRandom < size && columnRandom >= 0 && columnRandom < size;
     }
-
 
     static void placeShips(int shipSize){
         boolean placed = false;
@@ -127,6 +127,8 @@ public class Matrices {
     }
 
     public static void main(String[] args) {
+        System.out.println("!HINT!");
+        System.out.println(" ");
         InitializeBattleMap();
         placeShips(3);
         placeShips(2);
@@ -136,6 +138,10 @@ public class Matrices {
         placeShips(1);
         placeShips(1);
         printBattleMap();
+        System.out.println("!HINT!");
+        System.out.println(" ");
+        System.out.print("Welcome to the Battle Map. Please enter your name: ");
+        String username = sc.nextLine();
     }
 }
 
