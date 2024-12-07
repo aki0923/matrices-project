@@ -6,7 +6,7 @@ public class Matrices {
     static Random rand = new Random();
     static int matrixSize = 7;
     static String[][] battleMap = new String[matrixSize][matrixSize];
-    static String emptyCell = " [] ";
+    static String emptyCell = " [  ] ";
 
     static void InitializeBattleMap() {
         for (int i = 0; i < matrixSize; i++) {
@@ -18,19 +18,22 @@ public class Matrices {
     public static boolean canPlaceShip(String[][] battleMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
     int size = battleMap.length;
         if (horizontalOrVertical) {
-            if (columnRandom + shipSize > size) return false; // Проверка выхода за границы
+            if (columnRandom + shipSize > size) return false;
             for (int i = 0; i < shipSize; i++) {
-                if (battleMap[rowRandom][columnRandom + i].equals("1xSHIP")) return false; // Проверка пересечения
+                if (battleMap[rowRandom][columnRandom + i].equals("1xSHIP")) return false;
                 else if (battleMap[rowRandom][columnRandom + i].equals("2xSHIP")) return false;
                 else if (battleMap[rowRandom][columnRandom + i].equals("3xSHIP")) return false;
             }
-        } else {
+            if (!isAreaClear(battleMap, rowRandom, columnRandom, shipSize, horizontalOrVertical)) return false;
+        }
+        else {
             if (rowRandom + shipSize > size) return false;
             for (int i = 0; i < shipSize; i++) {
-                if (battleMap[rowRandom + i][columnRandom].equals("1xSHIP")) return false; 
+                if (battleMap[rowRandom + i][columnRandom].equals("1xSHIP")) return false;
                 else if (battleMap[rowRandom + i][columnRandom].equals("2xSHIP")) return false;
                 else if (battleMap[rowRandom + i][columnRandom].equals("3xSHIP")) return false;
             }
+            if (!isAreaClear(battleMap, rowRandom, columnRandom, shipSize, horizontalOrVertical)) return false;
         }
         return true;
     }
@@ -44,6 +47,52 @@ public class Matrices {
             System.out.println();
         }
     }
+    public static boolean isAreaClear(String[][] battleMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
+        int size = battleMap.length;
+
+        if (horizontalOrVertical) {
+            for (int i = -1; i <= shipSize; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    int checkRow = rowRandom + j;
+                    int checkCol = columnRandom + i;
+
+                    if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("1xSHIP")) {
+                        return false;
+                    }
+                    else if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("2xSHIP")) {
+                        return false;
+                    }
+                    else if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("3xSHIP")) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            for (int i = -1; i <= shipSize; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    int checkRow = rowRandom + i;
+                    int checkCol = columnRandom + j;
+
+                    if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("1xSHIP")) {
+                        return false;
+                    }
+                    if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("2xSHIP")) {
+                        return false;
+                    }
+                    if (isInsideBoard(checkRow, checkCol, size) && battleMap[checkRow][checkCol].equals("3xSHIP")) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isInsideBoard(int rowRandom, int columnRandom, int size) {
+        return rowRandom >= 0 && rowRandom < size && columnRandom >= 0 && columnRandom < size;
+    }
+
+
     static void placeShips(int shipSize){
         boolean placed = false;
         while(!placed) {
