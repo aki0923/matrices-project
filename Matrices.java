@@ -8,6 +8,7 @@ public class Matrices {
     static String[][] enemyMap = new String[matrixSize][matrixSize];        //matrix of computer
     static String emptyCell = " [  ] ";
     static String username;
+    static int amountOfDecks = 0;
     static String oneDeckShip = "1xSHIP";
     static String twoDeckShip = "2xSHIP";
     static String threeDeckShip = "3xSHIP";
@@ -108,6 +109,7 @@ public class Matrices {
     }
 
     static void placeShips(int shipSize){
+        amountOfDecks += shipSize;
         boolean placed = false;
         while(!placed) {
             int columnRandom = rand.nextInt(matrixSize);
@@ -158,8 +160,10 @@ public class Matrices {
         if (shot.equals("a1")) {
             if (enemyMap[0][0].equals(twoDeckShip) || enemyMap[0][0].equals(threeDeckShip)) {
                 userMap[0][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][0].equals(oneDeckShip)) {
                 userMap[0][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][0] = miss;
             }
@@ -168,8 +172,10 @@ public class Matrices {
         if (shot.equals("a2")) {
             if (enemyMap[0][1].equals(twoDeckShip) || enemyMap[0][1].equals(threeDeckShip)) {
                 userMap[0][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][1].equals(oneDeckShip)) {
                 userMap[0][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][1] = miss;
             }
@@ -178,8 +184,10 @@ public class Matrices {
         if (shot.equals("a3")) {
             if (enemyMap[0][2].equals(twoDeckShip) || enemyMap[0][2].equals(threeDeckShip)) {
                 userMap[0][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][2].equals(oneDeckShip)) {
                 userMap[0][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][2] = miss;
             }
@@ -188,8 +196,10 @@ public class Matrices {
         if (shot.equals("a4")) {
             if (enemyMap[0][3].equals(twoDeckShip) || enemyMap[0][3].equals(threeDeckShip)) {
                 userMap[0][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][3].equals(oneDeckShip)) {
                 userMap[0][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][3] = miss;
             }
@@ -198,8 +208,10 @@ public class Matrices {
         if (shot.equals("a5")) {
             if (enemyMap[0][4].equals(twoDeckShip) || enemyMap[0][4].equals(threeDeckShip)) {
                 userMap[0][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][4].equals(oneDeckShip)) {
                 userMap[0][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][4] = miss;
             }
@@ -208,8 +220,10 @@ public class Matrices {
         if (shot.equals("a6")) {
             if (enemyMap[0][5].equals(twoDeckShip) || enemyMap[0][5].equals(threeDeckShip)) {
                 userMap[0][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][5].equals(oneDeckShip)) {
                 userMap[0][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][5] = miss;
             }
@@ -218,8 +232,10 @@ public class Matrices {
         if (shot.equals("a7")) {
             if (enemyMap[0][6].equals(twoDeckShip) || enemyMap[0][6].equals(threeDeckShip)) {
                 userMap[0][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[0][6].equals(oneDeckShip)) {
                 userMap[0][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[0][6] = miss;
             }
@@ -228,8 +244,10 @@ public class Matrices {
         if (shot.equals("b1")) {
             if (enemyMap[1][0].equals(twoDeckShip) || enemyMap[1][0].equals(threeDeckShip)) {
                 userMap[1][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][0].equals(oneDeckShip)) {
                 userMap[1][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][0] = miss;
             }
@@ -238,8 +256,10 @@ public class Matrices {
         if (shot.equals("b2")) {
             if (enemyMap[1][1].equals(twoDeckShip) || enemyMap[1][1].equals(threeDeckShip)) {
                 userMap[1][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][1].equals(oneDeckShip)) {
                 userMap[1][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][1] = miss;
             }
@@ -248,8 +268,10 @@ public class Matrices {
         if (shot.equals("b3")) {
             if (enemyMap[1][2].equals(twoDeckShip) || enemyMap[1][2].equals(threeDeckShip)) {
                 userMap[1][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][2].equals(oneDeckShip)) {
                 userMap[1][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][2] = miss;
             }
@@ -258,8 +280,10 @@ public class Matrices {
         if (shot.equals("b4")) {
             if (enemyMap[1][3].equals(twoDeckShip) || enemyMap[1][3].equals(threeDeckShip)) {
                 userMap[1][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][3].equals(oneDeckShip)) {
                 userMap[1][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][3] = miss;
             }
@@ -268,8 +292,10 @@ public class Matrices {
         if (shot.equals("b5")) {
             if (enemyMap[1][4].equals(twoDeckShip) || enemyMap[1][4].equals(threeDeckShip)) {
                 userMap[1][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][4].equals(oneDeckShip)) {
                 userMap[1][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][4] = miss;
             }
@@ -278,8 +304,10 @@ public class Matrices {
         if (shot.equals("b6")) {
             if (enemyMap[1][5].equals(twoDeckShip) || enemyMap[1][5].equals(threeDeckShip)) {
                 userMap[1][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][5].equals(oneDeckShip)) {
                 userMap[1][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][5] = miss;
             }
@@ -288,8 +316,10 @@ public class Matrices {
         if (shot.equals("b7")) {
             if (enemyMap[1][6].equals(twoDeckShip) || enemyMap[1][6].equals(threeDeckShip)) {
                 userMap[1][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[1][6].equals(oneDeckShip)) {
                 userMap[1][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[1][6] = miss;
             }
@@ -298,8 +328,10 @@ public class Matrices {
         if (shot.equals("c1")) {
             if (enemyMap[2][0].equals(twoDeckShip) || enemyMap[2][0].equals(threeDeckShip)) {
                 userMap[2][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][0].equals(oneDeckShip)) {
                 userMap[2][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][0] = miss;
             }
@@ -308,8 +340,10 @@ public class Matrices {
         if (shot.equals("c2")) {
             if (enemyMap[2][1].equals(twoDeckShip) || enemyMap[2][1].equals(threeDeckShip)) {
                 userMap[2][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][1].equals(oneDeckShip)) {
                 userMap[2][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][1] = miss;
             }
@@ -318,8 +352,10 @@ public class Matrices {
         if (shot.equals("c3")) {
             if (enemyMap[2][2].equals(twoDeckShip) || enemyMap[2][2].equals(threeDeckShip)) {
                 userMap[2][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][2].equals(oneDeckShip)) {
                 userMap[2][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][2] = miss;
             }
@@ -328,8 +364,10 @@ public class Matrices {
         if (shot.equals("c4")) {
             if (enemyMap[2][3].equals(twoDeckShip) || enemyMap[2][3].equals(threeDeckShip)) {
                 userMap[2][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][3].equals(oneDeckShip)) {
                 userMap[2][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][3] = miss;
             }
@@ -338,8 +376,10 @@ public class Matrices {
         if (shot.equals("c5")) {
             if (enemyMap[2][4].equals(twoDeckShip) || enemyMap[2][4].equals(threeDeckShip)) {
                 userMap[2][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][4].equals(oneDeckShip)) {
                 userMap[2][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][4] = miss;
             }
@@ -348,8 +388,10 @@ public class Matrices {
         if (shot.equals("c6")) {
             if (enemyMap[2][5].equals(twoDeckShip) || enemyMap[2][5].equals(threeDeckShip)) {
                 userMap[2][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][5].equals(oneDeckShip)) {
                 userMap[2][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][5] = miss;
             }
@@ -358,8 +400,10 @@ public class Matrices {
         if (shot.equals("c7")) {
             if (enemyMap[2][6].equals(twoDeckShip) || enemyMap[2][6].equals(threeDeckShip)) {
                 userMap[2][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[2][6].equals(oneDeckShip)) {
                 userMap[2][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[2][6] = miss;
             }
@@ -368,8 +412,10 @@ public class Matrices {
         if (shot.equals("d1")) {
             if (enemyMap[3][0].equals(twoDeckShip) || enemyMap[3][0].equals(threeDeckShip)) {
                 userMap[3][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][0].equals(oneDeckShip)) {
                 userMap[3][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][0] = miss;
             }
@@ -378,8 +424,10 @@ public class Matrices {
         if (shot.equals("d2")) {
             if (enemyMap[3][1].equals(twoDeckShip) || enemyMap[3][1].equals(threeDeckShip)) {
                 userMap[3][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][1].equals(oneDeckShip)) {
                 userMap[3][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][1] = miss;
             }
@@ -388,8 +436,10 @@ public class Matrices {
         if (shot.equals("d3")) {
             if (enemyMap[3][2].equals(twoDeckShip) || enemyMap[3][2].equals(threeDeckShip)) {
                 userMap[3][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][2].equals(oneDeckShip)) {
                 userMap[3][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][2] = miss;
             }
@@ -398,8 +448,10 @@ public class Matrices {
         if (shot.equals("d4")) {
             if (enemyMap[3][3].equals(twoDeckShip) || enemyMap[3][3].equals(threeDeckShip)) {
                 userMap[3][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][3].equals(oneDeckShip)) {
                 userMap[3][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][3] = miss;
             }
@@ -408,8 +460,10 @@ public class Matrices {
         if (shot.equals("d5")) {
             if (enemyMap[3][4].equals(twoDeckShip) || enemyMap[3][4].equals(threeDeckShip)) {
                 userMap[3][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][4].equals(oneDeckShip)) {
                 userMap[3][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][4] = miss;
             }
@@ -418,8 +472,10 @@ public class Matrices {
         if (shot.equals("d6")) {
             if (enemyMap[3][5].equals(twoDeckShip) || enemyMap[3][5].equals(threeDeckShip)) {
                 userMap[3][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][5].equals(oneDeckShip)) {
                 userMap[3][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][5] = miss;
             }
@@ -428,8 +484,10 @@ public class Matrices {
         if (shot.equals("d7")) {
             if (enemyMap[3][6].equals(twoDeckShip) || enemyMap[3][6].equals(threeDeckShip)) {
                 userMap[3][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[3][6].equals(oneDeckShip)) {
                 userMap[3][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[3][6] = miss;
             }
@@ -438,8 +496,10 @@ public class Matrices {
         if (shot.equals("e1")) {
             if (enemyMap[4][0].equals(twoDeckShip) || enemyMap[4][0].equals(threeDeckShip)) {
                 userMap[4][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][0].equals(oneDeckShip)) {
                 userMap[4][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][0] = miss;
             }
@@ -448,8 +508,10 @@ public class Matrices {
         if (shot.equals("e2")) {
             if (enemyMap[4][1].equals(twoDeckShip) || enemyMap[4][1].equals(threeDeckShip)) {
                 userMap[4][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][1].equals(oneDeckShip)) {
                 userMap[4][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][1] = miss;
             }
@@ -458,8 +520,10 @@ public class Matrices {
         if (shot.equals("e3")) {
             if (enemyMap[4][2].equals(twoDeckShip) || enemyMap[4][2].equals(threeDeckShip)) {
                 userMap[4][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][2].equals(oneDeckShip)) {
                 userMap[4][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][2] = miss;
             }
@@ -468,8 +532,10 @@ public class Matrices {
         if (shot.equals("e4")) {
             if (enemyMap[4][3].equals(twoDeckShip) || enemyMap[4][3].equals(threeDeckShip)) {
                 userMap[4][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][3].equals(oneDeckShip)) {
                 userMap[4][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][3] = miss;
             }
@@ -478,8 +544,10 @@ public class Matrices {
         if (shot.equals("e5")) {
             if (enemyMap[4][4].equals(twoDeckShip) || enemyMap[4][4].equals(threeDeckShip)) {
                 userMap[4][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][4].equals(oneDeckShip)) {
                 userMap[4][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][4] = miss;
             }
@@ -488,8 +556,10 @@ public class Matrices {
         if (shot.equals("e6")) {
             if (enemyMap[4][5].equals(twoDeckShip) || enemyMap[4][5].equals(threeDeckShip)) {
                 userMap[4][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][5].equals(oneDeckShip)) {
                 userMap[4][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][5] = miss;
             }
@@ -498,8 +568,10 @@ public class Matrices {
         if (shot.equals("e7")) {
             if (enemyMap[4][6].equals(twoDeckShip) || enemyMap[4][6].equals(threeDeckShip)) {
                 userMap[4][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[4][6].equals(oneDeckShip)) {
                 userMap[4][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[4][6] = miss;
             }
@@ -508,8 +580,10 @@ public class Matrices {
         if (shot.equals("f1")) {
             if (enemyMap[5][0].equals(twoDeckShip) || enemyMap[5][0].equals(threeDeckShip)) {
                 userMap[5][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][0].equals(oneDeckShip)) {
                 userMap[5][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][0] = miss;
             }
@@ -518,8 +592,10 @@ public class Matrices {
         if (shot.equals("f2")) {
             if (enemyMap[5][1].equals(twoDeckShip) || enemyMap[5][1].equals(threeDeckShip)) {
                 userMap[5][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][1].equals(oneDeckShip)) {
                 userMap[5][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][1] = miss;
             }
@@ -528,8 +604,10 @@ public class Matrices {
         if (shot.equals("f3")) {
             if (enemyMap[5][2].equals(twoDeckShip) || enemyMap[5][2].equals(threeDeckShip)) {
                 userMap[5][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][2].equals(oneDeckShip)) {
                 userMap[5][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][2] = miss;
             }
@@ -538,8 +616,10 @@ public class Matrices {
         if (shot.equals("f4")) {
             if (enemyMap[5][3].equals(twoDeckShip) || enemyMap[5][3].equals(threeDeckShip)) {
                 userMap[5][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][3].equals(oneDeckShip)) {
                 userMap[5][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][3] = miss;
             }
@@ -548,8 +628,10 @@ public class Matrices {
         if (shot.equals("f5")) {
             if (enemyMap[5][4].equals(twoDeckShip) || enemyMap[5][4].equals(threeDeckShip)) {
                 userMap[5][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][4].equals(oneDeckShip)) {
                 userMap[5][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][4] = miss;
             }
@@ -558,8 +640,10 @@ public class Matrices {
         if (shot.equals("f6")) {
             if (enemyMap[5][5].equals(twoDeckShip) || enemyMap[5][5].equals(threeDeckShip)) {
                 userMap[5][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][5].equals(oneDeckShip)) {
                 userMap[5][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][5] = miss;
             }
@@ -568,8 +652,10 @@ public class Matrices {
         if (shot.equals("f7")) {
             if (enemyMap[5][6].equals(twoDeckShip) || enemyMap[5][6].equals(threeDeckShip)) {
                 userMap[5][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[5][6].equals(oneDeckShip)) {
                 userMap[5][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[5][6] = miss;
             }
@@ -578,8 +664,10 @@ public class Matrices {
         if (shot.equals("g1")) {
             if (enemyMap[6][0].equals(twoDeckShip) || enemyMap[6][0].equals(threeDeckShip)) {
                 userMap[6][0] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][0].equals(oneDeckShip)) {
                 userMap[6][0] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][0] = miss;
             }
@@ -588,8 +676,10 @@ public class Matrices {
         if (shot.equals("g2")) {
             if (enemyMap[6][1].equals(twoDeckShip) || enemyMap[6][1].equals(threeDeckShip)) {
                 userMap[6][1] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][1].equals(oneDeckShip)) {
                 userMap[6][1] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][1] = miss;
             }
@@ -598,8 +688,10 @@ public class Matrices {
         if (shot.equals("g3")) {
             if (enemyMap[6][2].equals(twoDeckShip) || enemyMap[6][2].equals(threeDeckShip)) {
                 userMap[6][2] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][2].equals(oneDeckShip)) {
                 userMap[6][2] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][2] = miss;
             }
@@ -608,8 +700,10 @@ public class Matrices {
         if (shot.equals("g4")) {
             if (enemyMap[6][3].equals(twoDeckShip) || enemyMap[6][3].equals(threeDeckShip)) {
                 userMap[6][3] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][3].equals(oneDeckShip)) {
                 userMap[6][3] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][3] = miss;
             }
@@ -618,8 +712,10 @@ public class Matrices {
         if (shot.equals("g5")) {
             if (enemyMap[6][4].equals(twoDeckShip) || enemyMap[6][4].equals(threeDeckShip)) {
                 userMap[6][4] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][4].equals(oneDeckShip)) {
                 userMap[6][4] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][4] = miss;
             }
@@ -628,8 +724,10 @@ public class Matrices {
         if (shot.equals("g6")) {
             if (enemyMap[6][5].equals(twoDeckShip) || enemyMap[6][5].equals(threeDeckShip)) {
                 userMap[6][5] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][5].equals(oneDeckShip)) {
                 userMap[6][5] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][5] = miss;
             }
@@ -638,8 +736,10 @@ public class Matrices {
         if (shot.equals("g7")) {
             if (enemyMap[6][6].equals(twoDeckShip) || enemyMap[6][6].equals(threeDeckShip)) {
                 userMap[6][6] = hit;
+                amountOfDecks--;
             } else if (enemyMap[6][6].equals(oneDeckShip)) {
                 userMap[6][6] = shipIsDead;
+                amountOfDecks--;
             } else {
                 userMap[6][6] = miss;
             }
@@ -650,11 +750,14 @@ public class Matrices {
 
 
     }
-   // public static boolean areAllShipsShotted (){
-
-
-   //     return areShipsShotted();
-    //}
+    public static boolean areAllShipsShotted (int amountOfDecks){
+        if(amountOfDecks == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
         InitializeBattleMap();
@@ -677,6 +780,7 @@ public class Matrices {
         printBattleMap();
         System.out.println("!HINT!");
         System.out.println(" ");
+       // System.out.println("amount of decks " + amountOfDecks);
         callIntroduction(username);
 
         userMap[0][0] = " [a1] ";userMap[0][1] = " [a2] ";userMap[0][2] = " [a3] ";userMap[0][3] = " [a4] ";userMap[0][4] = " [a5] ";userMap[0][5] = " [a6] ";userMap[0][6] = " [a7] ";
@@ -686,11 +790,17 @@ public class Matrices {
         userMap[4][0] = " [e1] ";userMap[4][1] = " [e2] ";userMap[4][2] = " [e3] ";userMap[4][3] = " [e4] ";userMap[4][4] = " [e5] ";userMap[4][5] = " [e6] ";userMap[4][6] = " [e7] ";
         userMap[5][0] = " [f1] ";userMap[5][1] = " [f2] ";userMap[5][2] = " [f3] ";userMap[5][3] = " [f4] ";userMap[5][4] = " [f5] ";userMap[5][5] = " [f6] ";userMap[5][6] = " [f7] ";
         userMap[6][0] = " [g1] ";userMap[6][1] = " [g2] ";userMap[6][2] = " [g3] ";userMap[6][3] = " [g4] ";userMap[6][4] = " [g5] ";userMap[6][5] = " [g6] ";userMap[6][6] = " [g7] ";
-      // while(!areAllShipsShotted())
-        printUserMap();
-        giveAShot();
-        printUserMap();
-
+        while(!areAllShipsShotted(amountOfDecks)) {
+            printUserMap();
+            giveAShot();
+            printUserMap();
+            clearScreen();
+        }
+    }
+    public static void clearScreen() {
+        for(int i = 0; i < 15; i++){
+            System.out.println(" ");
+        }
     }
 }
 
