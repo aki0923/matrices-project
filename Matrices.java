@@ -1,4 +1,5 @@
 package myProjects;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 public class Matrices {
@@ -7,20 +8,16 @@ public class Matrices {
     static int matrixSize = 7;
     static String[][] computerMap = new String[matrixSize][matrixSize];        //matrix of computer
     static String[][] userMap = new String[matrixSize][matrixSize];         //matrix of user
+    static ArrayList<String> userNameList = new ArrayList<String>();
+    static ArrayList<Integer> userScoreList = new ArrayList<>();
     static String username;
     static int amountOfDecks = 0;
     static String oneDeckShip = "1xSHIP";
     static String twoDeckShip = "2xSHIP";
     static String threeDeckShip = "3xSHIP";
 
-    public static void callIntroduction(String username){
-        System.out.print("Welcome to the Battle Map. Please enter your name: ");
-        username = sc.nextLine();
-        System.out.println("Hello " + username + ". Let's play sea battle! ");
-        System.out.println(" ");
-    }
 
-    static void InitializeBattleMap() {
+    static void InitializeBattleMap() {     // Creates new board and sets all elements of matrix to "empty" cells
         String emptyCell = " [  ] ";
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
@@ -29,7 +26,8 @@ public class Matrices {
         }
     }
 
-    public static boolean canPlaceShip(String[][] enemyMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
+    public static boolean canPlaceShip(String[][] enemyMap, int rowRandom, int columnRandom,
+                                       int shipSize, boolean horizontalOrVertical) {    ////Takes into account the verification of the area around. (If the element has ship - return false, if not - return true)
     int size = enemyMap.length;
         if (horizontalOrVertical) {
             if (columnRandom + shipSize > size) return false;
@@ -52,7 +50,7 @@ public class Matrices {
         return true;
     }
 
-    static void printComputerMap() {
+    static void printComputerMap() {                //prints matrix of computer
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
                 System.out.print(computerMap[i][j] + "  ");
@@ -62,7 +60,8 @@ public class Matrices {
         }
     }
 
-    public static boolean isAreaClear(String[][] enemyMap, int rowRandom, int columnRandom, int shipSize, boolean horizontalOrVertical) {
+    public static boolean isAreaClear(String[][] enemyMap, int rowRandom, int columnRandom,
+                                      int shipSize, boolean horizontalOrVertical) {     //Checks that the area around the ship is empty.  (Method from ChatGPT)
         int size = enemyMap.length;
         if (horizontalOrVertical) {
             for (int i = -1; i <= shipSize; i++) {
@@ -103,20 +102,21 @@ public class Matrices {
         return true;
     }
 
-    public static boolean isInsideBoard(int rowRandom, int columnRandom, int size) {
+    public static boolean isInsideBoard(int rowRandom, int columnRandom, int size) {    //Make sure that the checked cell does not go beyond the field.
         return rowRandom >= 0 && rowRandom < size && columnRandom >= 0 && columnRandom < size;
     }
 
-    static void placeShips(int shipSize){
+    static void placeShips(int shipSize){    //places ships according to multiple conditions (isAreaClear, canPlaceShip)
         amountOfDecks += shipSize;
         boolean placed = false;
+
         while(!placed) {
             int columnRandom = rand.nextInt(matrixSize);
             int rowRandom = rand.nextInt(matrixSize);
-            boolean horizontalOrVertical = rand.nextBoolean();
-            if (canPlaceShip(computerMap, rowRandom, columnRandom, shipSize, horizontalOrVertical)) {
+            boolean horizontal = rand.nextBoolean();
+            if (canPlaceShip(computerMap, rowRandom, columnRandom, shipSize, horizontal)) {
                 for (int i = 0; i < shipSize; i++) {
-                    if (horizontalOrVertical) {
+                    if (horizontal) {
                         if (shipSize == 1) {
                             computerMap[rowRandom][columnRandom + i] = oneDeckShip;
                         } else if (shipSize == 2) {
@@ -141,7 +141,7 @@ public class Matrices {
         }
     }
 
-    static void printUserMap() {
+    static void printUserMap() {            //prints user's battle map
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
                 System.out.print(userMap[i][j] + "  ");
@@ -151,7 +151,7 @@ public class Matrices {
         }
     }
 
-    static void giveAShot() {
+    static void giveAShot() {        // imitate real shot to the computer's battle map using conditions. (if shot == "coordinate of User Matrix" then Computer Matrix == "hit" / "shipIsDead" / "miss")
          String hit = " SHOT ";
          String shipIsDead = " DROWN";
          String miss = "  XX  ";
@@ -697,7 +697,7 @@ public class Matrices {
         }
     }
 
-    public static boolean areAllShipsShotted (int amountOfDecks){
+    public static boolean areAllShipsShotted (int amountOfDecks){       // checks if all ships are gone
         if(amountOfDecks == 0){
             return true;
         }
@@ -706,23 +706,27 @@ public class Matrices {
         }
     }
 
-    public static void main(String[] args) {
-        InitializeBattleMap();
-        computerMap[0][0] = " [a1] ";computerMap[0][1] = " [a2] ";computerMap[0][2] = " [a3] ";computerMap[0][3] = " [a4] ";computerMap[0][4] = " [a5] ";computerMap[0][5] = " [a6] ";computerMap[0][6] = " [a7] ";
-        computerMap[1][0] = " [b1] ";computerMap[1][1] = " [b2] ";computerMap[1][2] = " [b3] ";computerMap[1][3] = " [b4] ";computerMap[1][4] = " [b5] ";computerMap[1][5] = " [b6] ";computerMap[1][6] = " [b7] ";
-        computerMap[2][0] = " [c1] ";computerMap[2][1] = " [c2] ";computerMap[2][2] = " [c3] ";computerMap[2][3] = " [c4] ";computerMap[2][4] = " [c5] ";computerMap[2][5] = " [c6] ";computerMap[2][6] = " [c7] ";
-        computerMap[3][0] = " [d1] ";computerMap[3][1] = " [d2] ";computerMap[3][2] = " [d3] ";computerMap[3][3] = " [d4] ";computerMap[3][4] = " [d5] ";computerMap[3][5] = " [d6] ";computerMap[3][6] = " [d7] ";
-        computerMap[4][0] = " [e1] ";computerMap[4][1] = " [e2] ";computerMap[4][2] = " [e3] ";computerMap[4][3] = " [e4] ";computerMap[4][4] = " [e5] ";computerMap[4][5] = " [e6] ";computerMap[4][6] = " [e7] ";
-        computerMap[5][0] = " [f1] ";computerMap[5][1] = " [f2] ";computerMap[5][2] = " [f3] ";computerMap[5][3] = " [f4] ";computerMap[5][4] = " [f5] ";computerMap[5][5] = " [f6] ";computerMap[5][6] = " [f7] ";
-        computerMap[6][0] = " [g1] ";computerMap[6][1] = " [g2] ";computerMap[6][2] = " [g3] ";computerMap[6][3] = " [g4] ";computerMap[6][4] = " [g5] ";computerMap[6][5] = " [g6] ";computerMap[6][6] = " [g7] ";
 
-        userMap[0][0] = " [a1] ";userMap[0][1] = " [a2] ";userMap[0][2] = " [a3] ";userMap[0][3] = " [a4] ";userMap[0][4] = " [a5] ";userMap[0][5] = " [a6] ";userMap[0][6] = " [a7] ";
-        userMap[1][0] = " [b1] ";userMap[1][1] = " [b2] ";userMap[1][2] = " [b3] ";userMap[1][3] = " [b4] ";userMap[1][4] = " [b5] ";userMap[1][5] = " [b6] ";userMap[1][6] = " [b7] ";
-        userMap[2][0] = " [c1] ";userMap[2][1] = " [c2] ";userMap[2][2] = " [c3] ";userMap[2][3] = " [c4] ";userMap[2][4] = " [c5] ";userMap[2][5] = " [c6] ";userMap[2][6] = " [c7] ";
-        userMap[3][0] = " [d1] ";userMap[3][1] = " [d2] ";userMap[3][2] = " [d3] ";userMap[3][3] = " [d4] ";userMap[3][4] = " [d5] ";userMap[3][5] = " [d6] ";userMap[3][6] = " [d7] ";
-        userMap[4][0] = " [e1] ";userMap[4][1] = " [e2] ";userMap[4][2] = " [e3] ";userMap[4][3] = " [e4] ";userMap[4][4] = " [e5] ";userMap[4][5] = " [e6] ";userMap[4][6] = " [e7] ";
-        userMap[5][0] = " [f1] ";userMap[5][1] = " [f2] ";userMap[5][2] = " [f3] ";userMap[5][3] = " [f4] ";userMap[5][4] = " [f5] ";userMap[5][5] = " [f6] ";userMap[5][6] = " [f7] ";
-        userMap[6][0] = " [g1] ";userMap[6][1] = " [g2] ";userMap[6][2] = " [g3] ";userMap[6][3] = " [g4] ";userMap[6][4] = " [g5] ";userMap[6][5] = " [g6] ";userMap[6][6] = " [g7] ";
+    public static void main(String[] args) {
+        String yesOrNo = "yes";
+        int numberOfGames = 0;
+        while (yesOrNo.equals("yes")) {
+            InitializeBattleMap();
+            computerMap[0][0] = " [a1] ";computerMap[0][1] = " [a2] ";computerMap[0][2] = " [a3] ";computerMap[0][3] = " [a4] ";computerMap[0][4] = " [a5] ";computerMap[0][5] = " [a6] ";computerMap[0][6] = " [a7] ";
+            computerMap[1][0] = " [b1] ";computerMap[1][1] = " [b2] ";computerMap[1][2] = " [b3] ";computerMap[1][3] = " [b4] ";computerMap[1][4] = " [b5] ";computerMap[1][5] = " [b6] ";computerMap[1][6] = " [b7] ";
+            computerMap[2][0] = " [c1] ";computerMap[2][1] = " [c2] ";computerMap[2][2] = " [c3] ";computerMap[2][3] = " [c4] ";computerMap[2][4] = " [c5] ";computerMap[2][5] = " [c6] ";computerMap[2][6] = " [c7] ";
+            computerMap[3][0] = " [d1] ";computerMap[3][1] = " [d2] ";computerMap[3][2] = " [d3] ";computerMap[3][3] = " [d4] ";computerMap[3][4] = " [d5] ";computerMap[3][5] = " [d6] ";computerMap[3][6] = " [d7] ";
+            computerMap[4][0] = " [e1] ";computerMap[4][1] = " [e2] ";computerMap[4][2] = " [e3] ";computerMap[4][3] = " [e4] ";computerMap[4][4] = " [e5] ";computerMap[4][5] = " [e6] ";computerMap[4][6] = " [e7] ";
+            computerMap[5][0] = " [f1] ";computerMap[5][1] = " [f2] ";computerMap[5][2] = " [f3] ";computerMap[5][3] = " [f4] ";computerMap[5][4] = " [f5] ";computerMap[5][5] = " [f6] ";computerMap[5][6] = " [f7] ";
+            computerMap[6][0] = " [g1] ";computerMap[6][1] = " [g2] ";computerMap[6][2] = " [g3] ";computerMap[6][3] = " [g4] ";computerMap[6][4] = " [g5] ";computerMap[6][5] = " [g6] ";computerMap[6][6] = " [g7] ";
+
+            userMap[0][0] = " [a1] ";userMap[0][1] = " [a2] ";userMap[0][2] = " [a3] ";userMap[0][3] = " [a4] ";userMap[0][4] = " [a5] ";userMap[0][5] = " [a6] ";userMap[0][6] = " [a7] ";
+            userMap[1][0] = " [b1] ";userMap[1][1] = " [b2] ";userMap[1][2] = " [b3] ";userMap[1][3] = " [b4] ";userMap[1][4] = " [b5] ";userMap[1][5] = " [b6] ";userMap[1][6] = " [b7] ";
+            userMap[2][0] = " [c1] ";userMap[2][1] = " [c2] ";userMap[2][2] = " [c3] ";userMap[2][3] = " [c4] ";userMap[2][4] = " [c5] ";userMap[2][5] = " [c6] ";userMap[2][6] = " [c7] ";
+            userMap[3][0] = " [d1] ";userMap[3][1] = " [d2] ";userMap[3][2] = " [d3] ";userMap[3][3] = " [d4] ";userMap[3][4] = " [d5] ";userMap[3][5] = " [d6] ";userMap[3][6] = " [d7] ";
+            userMap[4][0] = " [e1] ";userMap[4][1] = " [e2] ";userMap[4][2] = " [e3] ";userMap[4][3] = " [e4] ";userMap[4][4] = " [e5] ";userMap[4][5] = " [e6] ";userMap[4][6] = " [e7] ";
+            userMap[5][0] = " [f1] ";userMap[5][1] = " [f2] ";userMap[5][2] = " [f3] ";userMap[5][3] = " [f4] ";userMap[5][4] = " [f5] ";userMap[5][5] = " [f6] ";userMap[5][6] = " [f7] ";
+            userMap[6][0] = " [g1] ";userMap[6][1] = " [g2] ";userMap[6][2] = " [g3] ";userMap[6][3] = " [g4] ";userMap[6][4] = " [g5] ";userMap[6][5] = " [g6] ";userMap[6][6] = " [g7] ";
 
             System.out.println("!HINT!");
             System.out.println(" ");
@@ -743,19 +747,41 @@ public class Matrices {
                 giveAShot();
                 userScore++;
                 clearScreen();
-            }
-            if (areAllShipsShotted(amountOfDecks)) {
-                callCongratulations(userScore);
-            }
+                if (areAllShipsShotted(amountOfDecks)) {
+                    numberOfGames++;
+                    callCongratulations(userScore);
+                    callScoreList(numberOfGames, userScoreList, userNameList);
+                    System.out.println("Do you want to play again? Type yes or no: ");
+                    yesOrNo = sc.nextLine();
+                    System.out.println(" ");
+                }
 
+            }
+        }
     }
 
-    public static void callCongratulations(int userScore){
+    public static void callCongratulations(int userScore){              //congratulations after win
         System.out.println("Congratulations! You won!");
-        System.out.println("You shotted: " + userScore + " times.");
+        System.out.println("You shot: " + userScore + " times.");
+        userScoreList.add(userScore);
     }
 
-    public static void clearScreen() {
+    public static void callScoreList(int numberOfGames, ArrayList<Integer> userScoreList, ArrayList<String> userNameList){
+        System.out.println("Score list: ");
+        for(int i = 0; i < numberOfGames; i++){
+            System.out.println(userNameList.get(i) + " - " + userScoreList.get(i) + " shots");
+        }
+    }
+
+    public static void callIntroduction(String username){           //Calls introduction
+        System.out.print("Welcome to the Battle Map. Please enter your name: ");
+        username = sc.nextLine();
+        userNameList.add(username);
+        System.out.println("Hello " + username + ". Let's play sea battle! ");
+        System.out.println(" ");
+    }
+
+    public static void clearScreen() {                                  //not clears, moves the console down
         for(int i = 0; i < 15; i++){
             System.out.println(" ");
         }
